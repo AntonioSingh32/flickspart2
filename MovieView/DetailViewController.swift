@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
             
             let imageUrl = NSURL(string: baseUrl + posterPath)
             
-            let imageRequest = NSURLRequest(URL: NSURL(string: baseUrl + posterPath)!)
+            _ = NSURLRequest(URL: NSURL(string: baseUrl + posterPath)!)
             
             posterImageView.setImageWithURL(imageUrl!)
             

@@ -48,7 +48,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         data, options:[]) as? NSDictionary {
                             print("response: \(responseDictionary)")
                             
-                           self.movies = responseDictionary ["results"] as! [NSDictionary]
+                           self.movies = responseDictionary ["results"] as? [NSDictionary]
                             self.tableview.reloadData()
                             
                     }
@@ -111,7 +111,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         data, options:[]) as? NSDictionary {
                             print("response: \(responseDictionary)")
                             
-                            self.movies = responseDictionary ["results"] as! [NSDictionary]
+                            self.movies = responseDictionary ["results"] as? [NSDictionary]
                             self.tableview.reloadData()
                             refreshControl.endRefreshing()
                     }
