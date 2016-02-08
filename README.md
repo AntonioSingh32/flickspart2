@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. How to add in specific filters to app to specify genres of movies or top rated.
+1. How to add in specific filter to app to specify genres.
 2. How to add a favorites or bookmarks to app.
 
 ## Video Walkthrough 
@@ -41,7 +41,7 @@ Here's a walkthrough of implemented user stories:
 
 ## Notes
 
-Had challenge of getting refresh feature to work but over time i realized the problem was due to placement of the code
+Had challenge of getting refresh feature to work but over time i realized the problem was due to placement of the code (Part 1)
 
 ## License
 
