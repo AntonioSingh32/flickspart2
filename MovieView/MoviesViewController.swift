@@ -23,6 +23,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "FLICKS"
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(named: "filmslate"), forBarMetrics: .Default)
+            navigationBar.tintColor = UIColor(red: 1.0, green: 0.25, blue: 0.25, alpha: 0.8)
+            
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
+            shadow.shadowOffset = CGSizeMake(2, 2);
+            shadow.shadowBlurRadius = 4;
+            navigationBar.titleTextAttributes = [
+                NSFontAttributeName : UIFont.boldSystemFontOfSize(22),
+                NSForegroundColorAttributeName : UIColor(red: 0.5, green: 0.20, blue: 0.25, alpha: 0.8),
+                NSShadowAttributeName : shadow
+            ]
+        }
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
@@ -157,6 +172,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         
         let posterPath = movie ["poster_path"] as? String
+
         
         let imageUrl = NSURL(string: baseUrl + posterPath!)
         
@@ -202,8 +218,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    
-    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
     
         if searchText.isEmpty {
@@ -238,12 +252,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
-    
-
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+   
     override func prepareForSegue(segue:UIStoryboardSegue, sender: AnyObject?) {
         
         let cell = sender as! UITableViewCell
