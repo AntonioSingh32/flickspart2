@@ -17,6 +17,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var overviewLabel: UILabel!
     
+    @IBOutlet weak var dateLabel: UILabel!
+   
     @IBOutlet weak var scrollView: UIScrollView!
     var movie:NSDictionary!
     
@@ -37,6 +39,10 @@ class DetailViewController: UIViewController {
         
         overviewLabel.sizeToFit()
         
+        let date = movie["release_date"] as! String
+        
+        dateLabel.text = date
+        
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         
@@ -54,6 +60,7 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

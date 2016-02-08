@@ -10,15 +10,19 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
 
     @IBOutlet weak var tableview: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var movies: [NSDictionary]?
     var endpoint: String!
+    var filteredData: [NSDictionary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
@@ -26,6 +30,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableview.dataSource = self
         tableview.delegate = self
+        searchBar.delegate = self
+        
+        
 
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
@@ -87,6 +94,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    
+    
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -119,6 +128,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         })
         task.resume()
     }
+    
 
 
     override func didReceiveMemoryWarning() {
@@ -152,6 +162,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let imageRequest = NSURLRequest(URL: NSURL(string: baseUrl + posterPath!)!)
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.orangeColor()
+        cell.selectedBackgroundView = backgroundView
+        
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         cell.posterView.setImageWithURL(imageUrl!)
@@ -180,15 +194,53 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
+        
+        
         print ("row \(indexPath.row)")
         
         return cell
         
     }
- 
+    
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    
+        if searchText.isEmpty {
+            
+            filteredData = movies
+            
+        } else {
+            
+            filteredData = movies?.filter({ (movie: NSDictionary) -> Bool in
+                if let title = movie["title"] as? String {
+                    if title.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }
+                return false
+            })
+        }
+        tableview.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
     
 
     
+
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
