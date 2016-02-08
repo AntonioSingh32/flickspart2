@@ -1,8 +1,8 @@
-# Project 1 - *Flicks App*
+# Project 2  - *Flicks App Part 2*
 
 **Flicks App** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **8** hours 
+Time spent: **11** hours 
 
 ## User Stories
 
@@ -12,10 +12,21 @@ The following **required** functionality were completed:
 - [ ] Poster images are loaded using the UIImageView category in the AFNetworking library.
 - [ ] User sees a loading state while waiting for the movies API.
 - [ ] User can pull to refresh the movie list.
+- [ ] User can view movie details by tapping on a cell.
+- [ ] User can select from a tab bar for either **Now Playing** or **Top Rated** movies.
+- [ ] Customize the selection effect of the cell.
+
 
 The following **optional** features are implemented:
 
 - [ ] All images fade in as they are loading.
+- [ ] Customize the navigation bar.
+- [ ] User can search for a movie.
+
+The following **additional** features are implemented:
+
+- [ ] Third Tab Bar containing Upcoming Movies
+- [ ] Release Dates Included In Navigation Controler
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
